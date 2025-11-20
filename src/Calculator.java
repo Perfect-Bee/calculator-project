@@ -71,10 +71,12 @@ public class Calculator {
                     double value1 = 0;
                     double value2 = 0;
                     String operator = "";
+
                     // 계산하는 매서드 호출하자.
                     // 첫 번째 숫자 입력
                     while(true) {
                         System.out.print("첫 번째 숫자를 입력하세요: ");
+                        // scanner.hasNextDouble() : double 자료형이 있는가? = 실수야?
                         if(scanner.hasNextDouble()){
                             value1 = scanner.nextDouble();
                             break;
@@ -131,9 +133,22 @@ public class Calculator {
                 case "2":
                     System.out.println("=== 계산 이력 ===");
                     // 계산 이력 확인 / 있으면 -> 보여주고, 없으면 -> 없다고 하고
+                    if(dataSave.isEmpty()){
+                        System.out.println("저장된 계산 이력이 없습니다.");
+                    } else {
+                        for(int i = 0; i < dataSave.size(); i++){
+                            System.out.println((i+1) + ". " + dataSave.get(i));
+                        }
+                    }
                     break;
                 case "3":
                     // 계산 이력 날려버리기
+                    if(dataSave.isEmpty()){
+                        System.out.println("삭제할 계산 이력이 없습니다.");
+                    } else {
+                        dataSave.clear();
+                        System.out.println("모든 계산 이력이 삭제되었습니다.");
+                    }
                     break;
                 case "0":
                     // 계산기 종료. -> while의 true를 꺼버려야 함.
@@ -153,12 +168,8 @@ public class Calculator {
 /*
 1. 우선 역순으로. 큰 틀 부터 잡고 시작해보자
 2. case 1. 그러니까 실질 계산은 어떻게 하지?
--> case가 일단 편해보이긴 하다. 이걸로 하자.
--> 으아아아 git 왤캐 햇갈리냐. 이거 커밋 된 거 맞아?
--> 일단 산술연산자랑 추가연산자 묶어서 만들자.
--> 어라? 근데, 거듭제곱이랑 제곱근은 같이 못만드는데? 숫자 하나에 연산 하나잖아.
--> ...??? 뭐지?
--> 아니다. 거듭제곱은 A^B. 제곱근(sqrt)만 예외처리하자.
+??? : 숫자냐 문자냐 구분하는 게 왜 이렇게 어렵지...
+검색해서 확인한 .hasnextDouble 말고 딴거 없나?
 
-
+3. case 2 :
 */
