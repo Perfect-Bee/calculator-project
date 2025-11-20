@@ -44,6 +44,7 @@ public class Calculator {
         return calculator(value1, value2, operator);
     }
 
+    // 메인
     public static void main(String[] args) {
         // 스캐너
         Scanner scanner = new Scanner(System.in);
@@ -117,9 +118,9 @@ public class Calculator {
 
                     // 결과 출력
                     if(operator.equals("sqrt")){
-                        System.out.printf("결과: √%.1f = %.1f%n", value1, result);
+                        System.out.printf("입력 : √%.1f, %s -> 출력 : %.1f%n", value1, operator, result);
                     } else {
-                        System.out.printf("결과: %.1f %s %.1f = %.1f%n", value1, operator, value2, result);
+                        System.out.printf("입력 : %.1f, %s, %.1f -> 출력 : %.1f%n", value1, operator, value2, result);
                         System.out.print("계속 계산하시겠습니까? (y/n): ");
                     }
                     // 계산 결과를 기록에 저장
@@ -177,15 +178,6 @@ public class Calculator {
                     break;
             }
         }
-
         scanner.close();
     }
 }
-/*
-1. 우선 역순으로. 큰 틀 부터 잡고 시작해보자
-2. case 1. 그러니까 실질 계산은 어떻게 하지?
-??? : 숫자냐 문자냐 구분하는 게 왜 이렇게 어렵지...
-검색해서 확인한 .hasnextDouble 말고 딴거 없나?
-
-3. case 2 :
-*/
