@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Calculator {
     // 숫자와 연산자 입력
-    public static double cacluate(double value1, double value2, String operator){
+    public static double calculator(double value1, double value2, String operator){
         double result = 0;
 
         switch (operator){
@@ -41,7 +41,7 @@ public class Calculator {
     }
     // 입력받은 숫자 연산자 부름 -> 계산 수행 매서드
     public static double performCalculation(double value1, double value2, String operator){
-        return cacluate(value1, value2, operator);
+        return calculator(value1, value2, operator);
     }
 
     public static void main(String[] args) {
@@ -120,6 +120,7 @@ public class Calculator {
                         System.out.printf("결과: √%.1f = %.1f%n", value1, result);
                     } else {
                         System.out.printf("결과: %.1f %s %.1f = %.1f%n", value1, operator, value2, result);
+                        System.out.print("계속 계산하시겠습니까? (y/n): ");
                     }
                     // 계산 결과를 기록에 저장
                     if(operator.equals("sqrt")){ // 예외처리 : 1개만
@@ -128,7 +129,22 @@ public class Calculator {
                         dataSave.add(value1 + " " + operator + " " + value2 + " = " + result);
                     }
 
-                    break; // 이거 붙여야 case 다음 연달아 안나옴
+                    // 계속 계산 여부 확인
+                    scanner.nextLine(); // 이전 입력에서 남은 개행 제거. 이거 안하면 if else에 계속 걸림
+                    String again = "";
+                    while(true){
+                        again = scanner.nextLine(); // y 또는 n 입력받고
+                        if(again.equalsIgnoreCase("y")) {
+                            break;
+                        } else if(again.equalsIgnoreCase("n")) {
+                            running = false;
+                            System.out.println("계산기를 종료합니다.");
+                            break;
+                        } else {
+                            System.out.print("잘못된 입력입니다. y 또는 n을 입력해주세요. : ");
+                        }
+                    }
+                    break;
 
                 case "2":
                     System.out.println("=== 계산 이력 ===");
